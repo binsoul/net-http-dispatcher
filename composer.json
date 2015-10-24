@@ -1,0 +1,47 @@
+{
+    "name": "binsoul/net-http-dispatcher",
+    "description": "Dispatcher using named parameters to invoke callables or methods of objects",
+    "keywords": [
+        "http",
+        "dispatcher"
+    ],
+    "homepage": "https://github.com/binsoul/net-http-dispatcher",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Mößler",
+            "email": "code@binsoul.de",
+            "homepage": "https://github.com/binsoul",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "binsoul/common": "~1.0@dev",
+        "psr/http-message": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.0",
+        "fabpot/php-cs-fixer": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BinSoul\\Net\\Http\\Dispatcher\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BinSoul\\Test\\Net\\Http\\Dispatcher\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "fix-src": "php-cs-fixer fix -v src",
+        "fix-tests": "php-cs-fixer fix -v tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
