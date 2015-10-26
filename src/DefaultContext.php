@@ -4,6 +4,9 @@ namespace BinSoul\Net\Http\Dispatcher;
 
 use BinSoul\Common\DataObject;
 
+/**
+ * Provides a default implementation of the {@see Context} interface.
+ */
 class DefaultContext implements Context
 {
     use DataObject;

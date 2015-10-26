@@ -103,7 +103,7 @@ class DefaultDispatcher implements Dispatcher
     }
 
     /**
-     * Invokes a reponder based on the parameters from the given context.
+     * Invokes a responder using the parameters from the given context.
      *
      * @param RequestInterface $request
      * @param Context          $context
@@ -137,14 +137,17 @@ class DefaultDispatcher implements Dispatcher
                 $this->buildParameters($function->getParameters(), $request, $context)
             );
         } elseif (is_object($responder)) {
-            $methodName = '__invoke';
-            if ($context->hasParameter($this->methodParameter)) {
-                $methodName = $context->getParameter($this->methodParameter);
-            }
+            $methodName = $context->getParameter($this->methodParameter, '__invoke');
 
             $reflectionClass = new \ReflectionClass($responder);
             if (!$reflectionClass->hasMethod($methodName)) {
-                throw new \RuntimeException(sprintf('Responder has no method "%s".', $methodName));
+                throw new \RuntimeException(
+                    sprintf(
+                        'The responder "%s" has no method "%s".',
+                        get_class($responder),
+                        $methodName
+                    )
+                );
             }
 
             $method = $reflectionClass->getMethod($methodName);
@@ -163,6 +166,7 @@ class DefaultDispatcher implements Dispatcher
      * Builds an array of resolved parameters suitable for invokeArgs.
      *
      * @param \ReflectionParameter[] $parameters
+     * @param RequestInterface       $request
      * @param Context                $context
      *
      * @return mixed[]

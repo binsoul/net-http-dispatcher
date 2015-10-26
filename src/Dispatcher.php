@@ -5,6 +5,9 @@ namespace BinSoul\Net\Http\Dispatcher;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Invokes a responder optionally surrounded by middleware to return a response.
+ */
 interface Dispatcher
 {
     /**
