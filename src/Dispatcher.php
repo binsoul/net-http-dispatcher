@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace BinSoul\Net\Http\Dispatcher;
 
 use Psr\Http\Message\RequestInterface;
@@ -24,7 +26,7 @@ interface Dispatcher
      *
      * @return mixed
      */
-    public function addResponder($name, $responder);
+    public function addResponder(string $name, $responder);
 
     /**
      * @param Middleware|callable|string $middleware
@@ -37,8 +39,8 @@ interface Dispatcher
     public function setFactory(InvokableFactory $factory);
 
     /**
-     * @param $objectParameter
-     * @param $methodParameter
+     * @param string $objectParameter
+     * @param string $methodParameter
      */
-    public function defineParameters($objectParameter, $methodParameter);
+    public function defineParameters(string $objectParameter, string $methodParameter);
 }

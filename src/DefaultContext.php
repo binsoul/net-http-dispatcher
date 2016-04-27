@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace BinSoul\Net\Http\Dispatcher;
 
 use BinSoul\Common\DataObject;
@@ -11,12 +13,12 @@ class DefaultContext implements Context
 {
     use DataObject;
 
-    public function hasParameter($name)
+    public function hasParameter(string $name): bool
     {
         return $this->hasData($name);
     }
 
-    public function getParameter($name, $default = null)
+    public function getParameter(string $name, $default = null)
     {
         if (!$this->hasData($name)) {
             return $default;
@@ -25,11 +27,11 @@ class DefaultContext implements Context
         return $this->__get($name);
     }
 
-    public function withParameter($name, $value)
+    public function withParameter(string $name, $value): Context
     {
         $data = $this->getData();
         $data[$name] = $value;
 
-        return new self($data);
+        return new static($data);
     }
 }

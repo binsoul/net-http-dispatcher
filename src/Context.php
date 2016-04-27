@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace BinSoul\Net\Http\Dispatcher;
 
 /**
@@ -14,7 +16,7 @@ interface Context
      *
      * @return bool
      */
-    public function hasParameter($name);
+    public function hasParameter(string $name): bool;
 
     /**
      * Returns the value of a parameter or the given default if the parameters doesn't exist.
@@ -24,7 +26,7 @@ interface Context
      *
      * @return mixed
      */
-    public function getParameter($name, $default = null);
+    public function getParameter(string $name, $default = null);
 
     /**
      * Returns an instance with the new parameter.
@@ -32,7 +34,7 @@ interface Context
      * @param string $name
      * @param mixed  $value
      *
-     * @return static
+     * @return Context
      */
-    public function withParameter($name, $value);
+    public function withParameter(string $name, $value): Context;
 }

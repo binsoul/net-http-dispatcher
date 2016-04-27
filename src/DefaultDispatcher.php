@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace BinSoul\Net\Http\Dispatcher;
 
 use Psr\Http\Message\RequestInterface;
@@ -35,8 +37,8 @@ class DefaultDispatcher implements Dispatcher
     public function __construct(
         array $responders = [],
         array $middlewares = [],
-        $responderParameter = 'responder',
-        $methodParameter = 'method',
+        string $responderParameter = 'responder',
+        string $methodParameter = 'method',
         InvokableFactory $factory = null
     ) {
         $this->responders = $responders;
@@ -81,7 +83,7 @@ class DefaultDispatcher implements Dispatcher
         return $this($request, new DefaultContext($context));
     }
 
-    public function addResponder($name, $responder)
+    public function addResponder(string $name, $responder)
     {
         $this->responders[$name] = $responder;
     }
@@ -96,7 +98,7 @@ class DefaultDispatcher implements Dispatcher
         $this->factory = $factory;
     }
 
-    public function defineParameters($objectParameter, $methodParameter)
+    public function defineParameters(string $objectParameter, string $methodParameter)
     {
         $this->responderParameter = $objectParameter;
         $this->methodParameter = $methodParameter;

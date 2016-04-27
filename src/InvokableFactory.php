@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace BinSoul\Net\Http\Dispatcher;
 
 /**
@@ -14,7 +16,7 @@ interface InvokableFactory
      *
      * @return Responder|object|callable
      */
-    public function buildResponder($name);
+    public function buildResponder(string $name);
 
     /**
      * Builds the middleware identified by the provided name.
@@ -23,5 +25,5 @@ interface InvokableFactory
      *
      * @return Middleware|callable
      */
-    public function buildMiddleware($name);
+    public function buildMiddleware(string $name);
 }
